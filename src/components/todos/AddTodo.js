@@ -1,10 +1,10 @@
 import { useState } from "react";
-import { addTodo } from "../../store/slices/ToodoSlice";
+import { addTodo } from "../../store/slices/TodoSlice";
 import { useDispatch } from "react-redux";
-import { data } from "autoprefixer";
 
 const AddTodo = () => {
   const [inputTodo, setInputTodo] = useState("");
+
   const dispatch = useDispatch();
 
   const addButton = () => {
@@ -13,7 +13,7 @@ const AddTodo = () => {
         addTodo({
           id: new Date().getTime(),
           text: inputTodo,
-          done: true,
+          done: false,
         })
       );
 
@@ -24,6 +24,7 @@ const AddTodo = () => {
   return (
     <div className="flex mt-4">
       <input
+        value={inputTodo}
         onChange={(e) =>
           e.target.value.length > 0
             ? setInputTodo(e.target.value)
